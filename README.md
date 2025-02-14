@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# 🎮 Tic-Tac-Toe Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Overview
+This is a modern Tic-Tac-Toe game built with **React (TypeScript)**. The game supports two players (X and O) and includes features such as **score tracking**, **game history**, and a responsive UI.
 
-Currently, two official plugins are available:
+## ✨ Features
+- 🎲 **Two-player turn-based gameplay**
+- 🏆 **Winner detection** and game draw recognition
+- 🔄 **Restart button** to reset the game
+- 📜 **Game history tracking** with a pop-up modal
+- 🎨 **Hover preview** to indicate the next move
+- 📱 **Fully responsive UI**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Technologies Used
+- **React.js (TypeScript)**
+- **React Hooks (useState, useEffect)**
+- **React Icons** for graphical X and O
+- **CSS (Styled Components/Custom Styling)**
+- **Vercel** for deployment
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Getting Started
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-username/tic-tac-toe.git
+cd tic-tac-toe
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 2️⃣ Install Dependencies
+```sh
+npm install
 ```
+
+### 3️⃣ Run the Development Server
+```sh
+npm run dev
+```
+The app will be available at **`http://localhost:5173/`** (or a similar port).
+
+### 4️⃣ Build for Production
+```sh
+npm run build
+```
+
+## 🌍 Deployment
+This project is deployed using **Vercel**. To deploy manually, run:
+```sh
+vercel
+```
+Follow the CLI instructions to complete the deployment.
+
+## 🎮 Try the Game Here
+[Play Tic-Tac-Toe](https://tic-tac-toe-omega-snowy-84.vercel.app/)
+```sh
+https://tic-tac-toe-omega-snowy-84.vercel.app
+```
+
+## 📷 Screenshots
+![Game Screenshot](https://i.imgur.com/lOlGlHd.png)
+
+
+
+---
+Made with ❤️ by [Bao Van](https://github.com/DangChauBaoVan)
+
