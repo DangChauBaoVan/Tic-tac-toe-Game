@@ -11,12 +11,7 @@ This is a modern Tic-Tac-Toe game built with **React (TypeScript)**. The game su
 - 🎨 **Hover preview** to indicate the next move
 - 📱 **Fully responsive UI**
 
-## 🛠️ Technologies Used
-- **React.js (TypeScript)**
-- **React Hooks (useState, useEffect)**
-- **React Icons** for graphical X and O
-- **CSS (Styled Components/Custom Styling)**
-- **Vercel** for deployment
+
 
 ## 🚀 Getting Started
 ### 1️⃣ Clone the Repository
