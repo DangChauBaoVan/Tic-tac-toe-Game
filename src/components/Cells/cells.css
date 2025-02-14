@@ -1,0 +1,30 @@
+.cell {
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: white;
+  }
+  
+  .cell-x:hover::before {
+    content: url("/img/close.png");
+    width: 64px;
+    height: 64px;
+    opacity: 0.4;
+  }
+  .cell-o:hover::before {
+    content: url("/img/o-hover.png");
+    width: 64px;
+    height: 64px;
+    opacity: 0.4;
+  }
+  
+  .icon{
+    width: 64px;
+    height: 64px;
+  }
