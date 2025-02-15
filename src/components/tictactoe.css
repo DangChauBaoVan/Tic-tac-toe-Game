@@ -17,7 +17,7 @@
  .score{
     display: flex;
     width: 100%;
-    margin: 15px 0;
+    margin-bottom: 15px;
     align-items: center;
     justify-content: space-between;
  }
@@ -97,11 +97,20 @@
     }
   }
   .history-btn{
-    border:none;
     background-color: transparent;
     padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#EF7F1A
   }
-  .history-btn:hover{
-    text-decoration: underline;
-    border: none;
+  .history-btn .laurel-left{
+    transform: scaleX(-1)
   }
+  .laurel-left, .laurel-right{
+  width: 32px;
+  height: 32px;
+  margin: 0 2px;
+  }
+  

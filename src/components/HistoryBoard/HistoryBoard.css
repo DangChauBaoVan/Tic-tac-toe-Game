@@ -79,3 +79,21 @@
     width: 20px;
     height: 20px;
 }
+
+.scoreboard{
+  background-color: transparent;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#EF7F1A
+}
+.scoreboard .laurel-left{
+  transform: scaleX(-1)
+}
+.laurel-left, .laurel-right{
+width: 32px;
+height: 32px;
+margin: 0 2px;
+}
