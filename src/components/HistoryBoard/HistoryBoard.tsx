@@ -7,7 +7,7 @@ type RoundHistory = {
   round: number;
   winner: "X" | "O" | "Draw";
 };
-interface HistoryBoardProps {
+type HistoryBoardProps ={
   history: RoundHistory[];
   isOpen: boolean;
   onClose: () => void;
@@ -40,8 +40,8 @@ const HistoryBoard: React.FC<HistoryBoardProps> = ({
                 }
 
                 return (
-                  <div className="history-content">
-                    <div key={index} className="history-row">
+                  <div key={index} className="history-content">
+                    <div  className="history-row">
                       <h3>Round {round.round}: </h3>
                       {result}
                     </div>

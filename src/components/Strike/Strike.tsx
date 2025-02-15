@@ -1,7 +1,12 @@
+import "./strike.css"
 
-const Strike = () => {
+type StrikeProps = {
+  strikeClass: string|null;
+}
+
+const Strike = ({strikeClass}: StrikeProps) => {
   return (
-    <div>Strike</div>
+    <div className={`strike ${strikeClass}`}></div>
   )
 }
 

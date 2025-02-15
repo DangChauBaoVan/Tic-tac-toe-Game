@@ -12,20 +12,25 @@ type Player = "X" | "O" | null;
 type BoardState = Player[];
 type RoundHistory = {
     round: number;
-    winner: "X" | "O" | "Draw";
+    winner:  "X" | "O" | "Draw";
   };
   
 
-const winningCombinations = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8], // Rows
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8], // Columns
-  [0, 4, 8],
-  [2, 4, 6], // Diagonals
-];
+  const winningCombinations = [
+    //Rows
+    { combo: [0, 1, 2], strikeClass: "strike-row-1" },
+    { combo: [3, 4, 5], strikeClass: "strike-row-2" },
+    { combo: [6, 7, 8], strikeClass: "strike-row-3" },
+  
+    //Columns
+    { combo: [0, 3, 6], strikeClass: "strike-column-1" },
+    { combo: [1, 4, 7], strikeClass: "strike-column-2" },
+    { combo: [2, 5, 8], strikeClass: "strike-column-3" },
+  
+    //Diagonals
+    { combo: [0, 4, 8], strikeClass: "strike-diagonal-1" },
+    { combo: [2, 4, 6], strikeClass: "strike-diagonal-2" },
+  ];
 const clickSound = new Audio(clickSoundAudio);
 clickSound.volume =0.5;
 const gameOverSound = new Audio(gameOverSoundAudio);
@@ -34,42 +39,44 @@ gameOverSound.volume =0.2;
 const TicTacToe: React.FC = () => {
   const [board, setBoard] = useState<BoardState>(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
-  const [winner, setWinner] = useState<Player | "Draw" | null>(null);
+  const [theWinner, setTheWWinner] = useState<Player | "Draw" | null>(null);
   const [score, setScore] = useState<{ X: number; O: number }>({ X: 0, O: 0 });
   const [history, setHistory] = useState<RoundHistory[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [strikeClass, setStrikeClass] = useState<string | null>(null);
 
-  const checkWinner = (newBoard: BoardState): Player | "Draw" | null => {
-    for (const combo of winningCombinations) {
+  const checkWinner = (newBoard: BoardState): {winner:Player | "Draw" | null,strikeClass: string|null} => {
+    for (const {combo,strikeClass} of winningCombinations) {
       const [a, b, c] = combo;
       if (
         newBoard[a] &&
         newBoard[a] === newBoard[b] &&
         newBoard[a] === newBoard[c]
       ) {
-        return newBoard[a];
+        return { winner: newBoard[a], strikeClass };;
       }
     }
-    return newBoard.every((cell) => cell !== null) ? "Draw" : null;
-  };
+    return { winner: newBoard.every(cell => cell !== null) ? "Draw" : null, strikeClass: null };
+};
 
   const handleClick = (index: number) => {
-    if (board[index] || winner) return;
+    if (board[index] || theWinner) return;
     
     const newBoard = [...board];
     newBoard[index] = currentPlayer;
     setBoard(newBoard);
     clickSound.play();
 
-    const gameWinner = checkWinner(newBoard);
-    if (gameWinner) {
+    const {winner,strikeClass} = checkWinner(newBoard);
+    if (winner) {
         gameOverSound.play();
-      setWinner(gameWinner);
-      setHistory(prevHistory => [...prevHistory, { round: prevHistory.length + 1, winner: gameWinner }]);
-      if (gameWinner !== "Draw") {
+      setTheWWinner(winner);
+      setStrikeClass(strikeClass);
+      setHistory(prevHistory => [...prevHistory, { round: prevHistory.length + 1, winner: winner }]);
+      if (winner !== "Draw") {
         setScore((prevScore) => ({
           ...prevScore,
-          [gameWinner]: prevScore[gameWinner] + 1,
+          [winner]: prevScore[winner] + 1,
         }));
       }
     } else {
@@ -79,7 +86,8 @@ const TicTacToe: React.FC = () => {
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
-    setWinner(null);
+    setTheWWinner(null);
+    setStrikeClass(null);
     setCurrentPlayer("X");
   };
 
@@ -105,16 +113,16 @@ const TicTacToe: React.FC = () => {
           Player <span style={{ color: "#2577cf" }}>X</span>
         </h2>
       </div>
-      {winner && (
+      {theWinner && (
         <div className="result-card">
-          <h2>{winner === "Draw" ? "It's a Draw!" : (<span>The winner is <span style={{color: `${winner ==="X" ? "#2577cf":"#EF0B34"}`}}>{winner}</span></span>) }</h2>
+          <h2>{theWinner === "Draw" ? (<span>"It's a Draw!"</span>) : (<span>The winner is <span style={{color: `${theWinner ==="X" ? "#2577cf":"#EF0B34"}`}}>{theWinner}</span></span>) }</h2>
 
           <button className="reset" onClick={resetGame}>
             Restart
           </button>
         </div>
       )}
-      <Board board={board} handleClick={handleClick} currentPlayer={currentPlayer}/>
+      <Board board={board} handleClick={handleClick} currentPlayer={currentPlayer} strikeClass={strikeClass}/>
       
       <HistoryBoard history={history} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
